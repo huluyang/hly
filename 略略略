@@ -1,0 +1,756 @@
+1.首先是安装  安装该语言以及语言编辑器
+0)打开微软的浏览器（因为他的英文翻译好用以及搜索广告少）输入python 找到Welcome to Python.org 点击进入官网https://www.python.org/   等待加载完成之后 点击Downloads 并且为windows 找到对应版本比如最新的 然后找到倒数第二个点击下载安装
+1）pycharm下载  同样搜索pycharm 一般除广告外的第一个就是 点击进入 拉到最下面 我们下载社区版 点击下载
+2.开始学习基础的知识点
+0）注释为 单行#号 多行三引号""" """
+1）首先是类型  常用的为 整数型int(常用）  浮点型float（常用） 字符串str（常用）  布尔类型（只有两种False表示假的 True表示真的）   列表list（常用） 字典dict（常用） 元组tuple  集合set
+
+整数型就是阿拉伯数字1，2，3
+
+浮点型就是带小数点的数字 1.1, 1.2, 1.3
+
+字符串就是指"aaa", "bbb",'111', """111"""
+
+列表就是[1, 2, 3] 其中里面的1，2，3 被称之为元素  列表里面的元素可以是任何比如 [1, "1", 1.1, ["aaa"], {"a":"aaa"}, True]
+
+字典就是{"姓名"："小白"，"年龄"：18} 其中"姓名" 和"年龄" 这两个位置的值 统称为字典的key  然后 "小白"和18 这两个位置的值 统称为字典的value 简单理解就是一个冒号的左边加上冒号的右边组成一对儿 冒号左边的称为key 冒号右边的称为value  字典里面也是会存在各种形式比如{"aaa":[1,2,3], "aaa":{"a":1}}
+
+元组就是（1，2，3） 它的特点就是里面的元素是不可修改的 不常用 知道就行
+
+集合就是{'1', '2', '3'} 他的优点就是不会出现重复的元素
+
+
+这些类型有什么用呢？
+在实际的开发过程当中 经常需要各种类型之间的转换 才能够完成比较复杂的功能相结合的大型项目  所以需要你熟练掌握类型转换  这个算是基础中的基础了
+比如用户输入的a = input（请输入指定数字）
+这里a不管用户输入的是什么  我们变量a接收到的都是字符串 所以如果是比较用户输入的数字大小 就需要进行类型转换 类型转换很简单 比如是字串a = "1"   我们需要将它变成整数类型 只需要简单的这样写 int(a)即可
+实际场景中还有很多类似的地方需要用到类型转换的  这里只是我举得一个简单的例子
+最后要提出索引和切片的概念
+
+2）然后就是条件判断   if。。。eilf。。。else  翻译成大白话就是 如果。。。或者。。。否则。。。
+if 表示的就是 如果。。。。
+eilf 表示的就是 或者。。。
+else 表示的就是 否则。。。
+这里的否则表示什么意思呢  就是 上面的两种情况都不符合 那我就执行否则的情况需要执行的事情
+比如大白话的例子就是
+如果 今天是晴天
+    我就去海边
+或者 今天是阴天
+    我就去爬山
+否则
+    我就是在家宅着
+转换成代码的样子表示就是
+if 今天是晴天:
+    我就去海边
+eilf 今天是阴天:
+    我就去爬山
+else:
+    我就在在家宅着
+
+3）最后就是循环  有两种  一种为for  一种为while   比如现在有个列表[1,2,3]  如果想循环他里面的每一个元素 则可以for i in [1,2,3]    while 一般用于条件循环或者长时间循环  比如 while True或者有个变量a 则while a>= 7  中断怎么办呢   break   那跳过呢  continue
+需求场景
+ 首先变量是什么概念呢   就是数学中的未知数X  因为它的值是我们自己赋予的 随时可以更改 改变  所以叫做变量
+   那么比如说a = 10 这个就是 10就是整数类型 简称整型  如果a=10.1 只要带小数点了就属于浮点型  这里为什么要分两种呢  因为 整型只能和整型进行加减乘除比较大小  浮点型和浮点型是同样的道理
+
+4）函数   就是def形式开头的一般的形式是
+def one_test():
+    print("hello world")
+另外还有一种函数是有返回值的 如下
+def one_test_return():
+    print("hello world")
+    return "hahaha"
+像这种有返回值的函数一般用于获取最后的执行结果
+比如我们现在创建两个整型的变量 然后让函数先计算其相加的结果 然后再计算其相乘的结果 最后返回最终的结果  案例如下
+
+def one():
+    a = 7
+    b = 7
+    c = a + b
+    d = a * b
+    e = c + d
+    return e
+
+one_test = one()
+print(one_test)
+如果是带参数的函数就是
+def one_test(num):
+    print(num)
+使用的时候就是
+one_test(1) 这里的1可以是任意的值 如果one_test()则会运行报错哦 因为你是有参数的函数 但是你没有给定对应的参数的值而且你的参数的值也并没有默认的值
+
+5)类class  类里面的知识很复杂 后面再讲
+就是class开头的 例如
+class One():
+    def one(self):
+        print("hello world")
+    def tow(self):
+        self.one()
+
+a = One()
+a.one()
+a.tow()
+
+函数也好 类也好 都是为了方面功能模块化的开发    比如开发一个上传下载文件的网站  那么就可以将需求功能分解为下载文件为一个函数  上传文件为一个函数  然后这两个函数都在一个类里面 成为传输类  便于维护和管理修改
+
+比如一个人一般一天需要三顿饭   那么在我们写编程里面是不是把吃饭这件事或者吃饭的整个流程放进一个函数里面 到需要的时候直接使用整个函数 看起来比较简洁也相对于写代码来讲效率更高不需要在重复写 如果按照流水账写日记那样
+假如吃饭的流程改了  以前吃饭的流程是先盛饭 然后再盛菜 然后筷子和勺子   先在需要调整整个顺序 如果放在一个函数里面的话 直接修改一次就可以   但是如果没有放在函数里面 而是每次吃饭的时候都进行了一次流水账式的流程 就是早上我 先盛饭 再盛菜 然后拿上了筷子和勺子
+中午吃饭的时候我 先盛饭 再盛菜 然后拿上了筷子和勺子   那么真正修改起来就是 早上 中午 晚上 吃饭的时候都需要进行修改调整   对于开发人员来说也不利于维护 效率过低 还容易忽略一些地方 忘记修改调整
+
+拿简单的真实案例进行举例子来讲就是
+ 请使用条件判断和循环 猜大小的小游戏 提示用户输入为input
+
+ while True:
+    user_input = input("请输入数字")
+    if int(user_input) > 7:
+        print("您输入的数字大了")
+    elif int(user_input) == 7:
+        print("恭喜您答对了")
+        break
+    else:
+        print("您输入的数字小了")
+
+ 请循环100以内数字 计算该数字和7的相加之和 以及 相减之差  最后将两个结果进行输出
+ for i in rang(1, 100):
+    he = i + 7
+    cha = i - 7
+    print(he, cha)
+ 通过对函数的理解  我们就可以将具体执行包装成一个函数
+ def chuli(num):
+    he = num + 7
+    cha = i - 7
+    print(he, cha)
+ for i in rang(1, 100):
+    chuli(i)
+
+6)运算符 + - * / > < >= <= ==（等于等于） !=(不等于)
+简单的数字加减乘除就不进行举例说明了  简单的大小比较也不需要举例  主要说一下==这个等价于相等 但是也可以用作比较两个字符串之前的比较  比如a="1" print(a=="1") 输出就是True
+比如一个列表里a = ["xiaoming", "xiaohong", "xiaohuang"] 我们希望判断如果小黑出现了则输出xiaohei来了
+for i in a:
+    if i == "xiaohei":
+        print("小黑来了")
+    else:
+        print("小黑没有来")
+现在增加需求了  需要计算检测次数 如果检测次数到达500次 则向列表自动添加xiaohei即可 如果小黑来了则停止检测
+num = 0
+a = ["xiaoming", "xiaohong", "xiaohuang"]
+while True:
+    num+=1
+    if num == 500:
+        a.append("xiaohei")
+    for i in a:
+        if i == "xiaohei":
+            print("小黑来了")
+            break
+        else:
+            print("小黑没有来")
+7)多条件判断 or and not  优先级为not > and > or
+
+比如判断a大于b 或者 c大于b 的时候  就可以写为 if a>b or c>b:pass  这个是满足其中一个条件就可以
+比如判断a大于b 并且 c大于b 的时候  就可以写为 if a>b and c>b:pass  这个是必须满足两个条件才通过
+比如判断a元素是否存在于b列表中 不存在是输出不存在 存在是输出存在  首先需要声明变量
+a = 7
+b=[1, 2, 3]
+if a not in b:  #这里的知识点为 in 就是在b列表里  但是前面加了not  就是否定的意思 可以直接解释为不在b列表内
+    print("不存在")
+else:
+    pring("存在")
+
+或者
+a = 7
+b = 8
+c = 9
+d = 10
+if a > b or a < c:
+    print("可能是a大于b或者可能是a小于c")
+else：
+    print("a没有大于b 而且 a也没有小于c")
+
+
+8）输入和输出
+首先print为打印 我们一般成它打印出来的信息为输出   其次就是用户的输入为input 比如
+a = input("请输入点儿什么")
+print("用户的输入为：", a)
+
+
+9)捕获错误异常
+import traceback
+
+try:
+    print(1/0)
+except:
+    traceback.print_exc()
+
+traceback.print_exc(file=open("error.log", "a+"))这是固定往指定的日志文件中记录报错异常的
+
+
+
+10)什么是第三方库   其实就是相当于别人写好了的工具  你直接拿来使用  可以理解为 数学公式 物理公式 语文中的成语或者词语    都是已经被人组合好了 你可以随便使用  比如上面的 traceback
+一般第三方库的使用方式有两种  一种是直接import 第二种是from 。。。 import。。。
+比如
+from random import randint
+print(randint(1,10))
+
+或者
+import random
+print(random.randint(1, 10))
+
+
+
+
+
+
+
+11)进程和线程的概念
+进程是什么呀   电脑里面运行的程序  把比如打开任务管理器 看到有程序在运行   一个在运行的程序相当于一个进程
+线程是什么呀   线程的概念是比进程更小的单位   一个进程里面可以含有多个线程  但是线程里面不可能有进程  只能进程里面存在线程 因为线程是比进程小的单位
+举例解释就是 进程相当于一个制造汽车的工厂   线程相当于工厂里面的员工
+单进程单线程 就是指一个进程里面只有一个线程 也就是说 一个大的汽车制造工厂里面只有一个员工 它负责制造汽车的所有流程 只能一步一步按部就班的制造
+单进程多线程 就是指一个进程里面有多个线程   也就是说 一个大的汽车制造工厂里面有很多个远程 他们分工明确 不需要 一步一步的做 而是每个生产环节都可以开工
+如果上面的例子理解不了的话
+单进程单线程  你可以理解为你想喝茶的时候  你先烧了一壶水 等水开了 你再去打开茶叶往杯子里放上相对应的量 然后倒水泡茶
+单进程多线程  你可以理解为你向喝茶的时候  你先烧了一壶水 刚烧上 在等待水开的时间你去打开了茶叶往被子里面放上相对应的量 然后水开了 倒水泡茶  这个过程中相比于上面的过程你很明显充分利用了等待水烧开的时间 所以相对来说你就是花了更少的时间达到了同样的结果提高了做事效率
+
+
+了解这个第三方库multiprocessing
+
+from multiprocessing import freeze_support, Process, active_children
+
+
+def one(first, second):
+    print(first, second)
+if __name__ == '__main__':
+    freeze_support()
+    #比如开3个进程
+    a = []
+    for i in range(3):
+        p = Process(target=one, args=(i+1, i+2))
+        p.start()
+        a.append(p)
+    for pp in a:
+        pp.join() #----这个是阻塞当前的主进程
+    print("okkk")
+
+
+---------------进程池
+from multiprocessing import Pool, freeze_support
+
+
+def one(first, second):
+    print(first, second)
+if __name__ == '__main__':
+    freeze_support()
+    p = Pool(7)
+    for i in range(6):
+        p.apply_async(one, args=(i+1, i+2))
+    p.close()
+    p.join()
+-----上面是进程池的并行-----
+-----线程的简单使用-----
+import threading
+def one():
+    for i in range(100):
+
+        print(i)
+print("aaaa")
+th = threading.Thread(target=one)
+th.start()
+print("bbb")
+-----线程的简单使用-----
+
+
+12）打开文件并读取其文件里面的内容
+with open("1.txt", "r", encoding="utf8) as fp:
+    info = fp.read()
+print(info)
+
+这里涉及到的知识点 1.with   使用with会自动进行关闭 因为通常我们打开文件后不使用的时候需要进行文件关闭的 但是我们使用了with就不需要再单独进行关闭了
+                2.open   就是简单的打开文件 里面的参数需要熟悉   首先1.txt为文件名称或者这里如果只填写文件名就是默认在当前运行的路径下面 如果写了绝对路径就是整体的文件位置路径 那就是指定路径下面的指定文件
+                                                            后面的"r"  这个参数有很多值 r ---就是以只读的方式打开文件 （常用）
+                                                                                     w ---就是打开文件用于写入  如果文件已存在则会将其覆盖 不过不存在就创建新的文件（常用）
+                                                                                     a ---就是打开一个文件用于追加 如果该文件已存在 则会继续添加内容  如果不存在则创建新的文件继续写入（常用）
+                                                                                     rb ---就是读取文件的内容的二进制信息（常用）
+                                                                                     wb ---就是以二进制的方式写入文件（常用）
+                                                                                     ab ---就是以二进制格式打开文件并进行追加
+                                                                                     r+ ---打开一个文件用于读写
+                                                                                     w+ ---打开一个文件用于读写 如果该文件已存在则将其覆盖 如果该文件不存在 则创建新文件
+                                                                                     a+ ---打开一个文件用于读写
+                                                                                     rb+ 以二进制格式打开一个文件用于读写
+                                                                                     wb+ 以二进制格式打开一个文件用于读写
+                                                                                     ab+ 以二进制格式打开一个文件用于追加
+                                                                                     这里统一说一下  一般二进制用来读取文件 然后进行传输 然后写入（就是生成）文件 非二进制就是读取文件的内容比如txt里面记录的是什么
+                3.encoding  就是指定写入或者读取的时候的编码 一般如果没有携带这个参数读取出来的时候是乱码的时候就进行添加这个参数并指定对应的编码
+
+                4.as   就是相当于起别名  大白话就是起外号
+
+                5.遇到混合编码的文件打开时 无论指定什么编码都会报错 这个时候可以指定errors="ignore" 这种情况比较少 有个大概印象就可以
+
+13）作用域
+
+a = "1"  #---全局变量
+def one():
+    a = "2"  #---局部变量
+    print(a)
+one()
+print(a)
+如果在one里面使用global 就是表明现在的a变量和外部全局变量时一个变量了
+
+
+
+14）socket
+--------------------------socket_client
+import socket
+
+client = socket.socket()
+
+client.connect(("127.0.0.1", 7777))
+
+mes = client.recv(1024)
+client.close()
+print(mes.decode("utf-8"))
+--------------------------socket_client
+--------------------------socket_server
+import socket
+
+host = "0.0.0.0"
+
+port = 7777
+
+server = socket.socket()
+
+server.bind((host, port))#注意  参数是一个元组
+server.listen(1)
+while 1:
+    print("等待连接")
+    conn, addr = server.accept()  # 创建socke和客户端通信
+    print(conn, addr)
+    mes = "hello"
+    conn.send(mes.encode("utf-8"))
+    conn.close()
+--------------------------socket_server
+
+
+
+15）拓展知识点 列表生成式 迭代器
+列表生成式 [i for i in range(7)]
+生成器 （i for i in range(7)）
+将列表转化为迭代器
+a = [1, 2]
+aa = iter(a)
+
+迭代器与列表的区别在于，构建迭代器的时候，不像列表把所有元素一次性加载到内存，而是以一种延迟计算（lazy evaluation）方式返回元素，这正是它的优点。比如列表中含有一千万个整数，需要占超过100M的内存，而迭代器只需要几十个字节的空间。因为它并没有把所有元素装载到内存中，而是等到调用next()方法的时候才返回该元素（按需调用 call by need 的方式，本质上 for 循环就是不断地调用迭代器的next()方法）。
+
+
+16）random模块 string模块  string.ascii_lowercase()为26个英文字母小写  string.ascii_letters为26个英文字母的大小写
+
+
+
+17） 高阶学习 异步
+import asyncio
+import time
+
+
+async def one(num):
+    print("start{}".format(num),time.time())
+    await asyncio.sleep(num)
+    print("end{}".format(num), time.time())
+async def main():
+    await asyncio.gather(one(2), one(1))
+if __name__ == '__main__':
+    asyncio.run(main())
+
+
+
+18）pycharm的快捷键 ctrl F 搜索文件中的内容  在项目右键查找所有文件中  ctrl G 输入行 直接到指定行 适合看错误日志时查看错错时直达  ctrl Z为回退  设置里面可以调整 shift+enter可以在当前位置换行不影响当前行内容  选中代码 按tab键会整体向后移动 按住shift+tab键则刚好相反   在输入的代码最后输入.print   最后教一下家断点进行debug
+
+19)计数器
+from collections import Counter
+colors = ['blue', 'blue', 'blue', 'red', 'red']
+counter = Counter(colors)
+输出为Counter({'blue': 3, 'red': 2})
+
+counter['yellow'] += 1
+输出为Counter({'blue': 3, 'red': 2, 'yellow': 1})
+
+counter.most_common()[0]
+输出为('blue', 3)
+
+20)列表sorted(list) max min  sum
+a = [3, 7, 1, 2, 5, 9]
+print(sorted(a))
+
+21)一切皆对象 每个对象都有一个类型
+
+22)退出 或者 主动退出结束
+import sys
+sys.exit(0)正常退出  sys.exit(1)异常情况退出  这个是报错进行终止
+os._exit(0)正常退出  os._exit(1)异常情况退出  这个会直接终止程序
+import os
+import sys
+import traceback
+print("开始运行")
+try:
+    # sys.exit(1)
+    os._exit(1)
+except:
+    traceback.print_exc()
+finally:
+    print("结束运行")
+
+23)json数据格式
+import json
+
+json.dumps() #将应该有的类型转换为字符串
+import json
+a = {"a": "aa", "b": "bb", "c": "cc"}
+b = json.dumps(a)
+print(b)
+print(type(b))
+
+
+import json
+a = '{"a": "aa", "b": "bb", "c": "cc"}'
+b = json.loads(a) #将字符串转换为应该有的类型
+print(b)
+print(type(b))
+#------拓展------
+#将对象写入json文件
+def write_to_json_file(filename, an_object):
+    with open(filename, 'w', encoding='utf-8') as file:
+        json.dump(an_object, file, ensure_ascii=False, indent=2)
+
+#从json文件读取对象
+def read_json_file(filename):
+    with open(filename, encoding='utf-8') as file:
+        return json.load(file)
+
+
+24）logging库
+---主文件内容
+from right_windows.ttt import one_tow
+import logging
+logging.basicConfig(filename="aaa.log", level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+def one():
+    print("aaaa")
+    logger.info("one")
+    logging.debug('This is a debug message')
+    logging.info('This is an info message')
+    logging.warning('This is a warning message')
+    logging.error('This is an error message')
+    logging.critical('This is a critical message')
+one()
+one_tow()
+one()
+---ttt.py的文件内容
+import logging
+logger = logging.getLogger(__name__)
+def one_tow():
+    print("bbb")
+    logger.info("tow")
+    logging.debug('This is a debug message tow')
+    logging.info('This is an info message tow')
+    logging.warning('This is a warning message tow')
+    logging.error('This is an error message tow')
+    logging.critical('This is a critical message tow')
+---ttt.py的文件内容
+
+25)一个重要的结论  有些效果在pycharm里面运行和打包成exe运行的效果是不一样的 比如os.startfile('"c:/Program Files/Autodesk/Maya2023/bin/maya.exe"')是可以脱离启动程序的 就是说exe里面包含这个代码命令，但是呢在pycharm里面运行关闭程序运行的时候 通过这个代码运行的程序也会相对应的关闭掉，但是打包成exe的话就不会有所关联
+
+26）另外一个开发插件的重要结论是 使用print去进行测试开发的过程中 有时候在motionbuilder中的python编辑器里面不会有立即输出的效果 但是并不代表没有输出运行  可能由于该软件的机制设计 会延迟输出什么的  优先使用其软件内部的有效命令进行代替print 比如控制播放器的开始或者暂停等简单的功能 相比于print更加直观和有效  另外在motionbuilder中可以直接使用pyside进行取代其软件内部的UI开发 前提是不要使用print进行调试 这样就会直观的进行调试 因为还是前面所说的经验
+
+27）学会看源码  学会看文档进行自学
+
+28）然后就是linux   找个本地虚拟机练习简单命令
+
+ls 查看当前目录下的文件列表
+cd 进入到目录
+pwd 查看当前命令所在的目录
+rm 文件 删除文件
+cp 原文件 新文件 拷贝copy文件
+cp -r 源文件夹 新文件夹
+ps -aux|grep python 查看系统进程是否存在包含python的运行进程
+tail -f 文件名  实时滚动显示文件的最后十行信息
+mkdir 名字  新建文件夹
+mv 文件 文件夹 移动源文件到目标文件夹中
+mv 文件A 文件B 修改文件A的名字为文件B
+cat 文件名 产看文件中的内容
+kill -9 进程id  强制关闭进程
+top 实时查看系统进程  相当于windows的任务管理器
+clear 清屏
+reboot 重启
+shutdown now 关机
+logout 注销
+date 查看系统时间
+ping 测试网络连通情况
+然后就是screen
+
+29）python关于远程连接服务器的库
+import paramiko
+
+# 创建SSH客户端对象
+client = paramiko.SSHClient()
+
+# 自动添加主机到known_hosts文件中
+client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+try:
+    # 连接远程服务器
+    client.connect('hostname', username='username', password='password')
+
+    # 执行命令
+    stdin, stdout, stderr = client.exec_command('ls -l')
+
+    # 打印输出结果
+    print(stdout.read().decode())
+except Exception as e:
+    print("Error connecting to remote server:", str(e))
+finally:
+    # 关闭SSH连接
+    client.close()
+
+
+
+
+
+30）后端接口flask
+import json
+import os
+import time
+
+from flask import Flask, make_response
+from flask import request
+from flask import send_from_directory
+
+app = Flask(__name__)
+
+
+@app.route("/")
+def hello_world():
+    return 'Hello World'
+#获取get参数
+@app.route("/get")
+def update_files():
+
+    canshu = request.args.get("canshu")
+
+    print(canshu)
+#依次请求上传单个文件
+@app.route("/upload_files", methods=["POST"])
+def down_files():
+    file = request.files.get('file')
+    if file and file.filename.endswith(".png"):
+        save_path = "aaa/{}".format(request.form['name'])
+        if not os.path.exists(save_path):
+            os.mkdir(save_path)
+
+        file.save(save_path + "/" + file.filename)
+        return 'success'
+    else:
+        return 'no file'
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", port=7779)
+
+31）接口api会了 对应的就是请求 requests库 get post请求
+url = "https://www.baidu.com"
+res = requests.get(url)
+print(res.text)
+但是这样一般是会被反爬限制的 所以要添加上请求头headers
+headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36"}
+res = requests.get(url=url, headers=headers)
+print(res.text)
+get网址有参数的话就是直接访问网址比如url = "https://www.baidu.com？canshu=helloworld"
+
+post请求
+data = {"username":"xiaoming666", "password":"xiaoming888"}
+res = requests.post(url=url, data=data)
+print(res.text)
+
+32）多上githup上面看别人写的代码 多研究源码
+
+33）要跟着多敲代码 光听或者光看是没有用的 不往脑子里进的
+
+34）安装第三方库一般都是使用pip install
+
+35）比较大的数据表的话就使用pandas库
+
+36）有一个func_timeout的超时第三方库 首先先下载pip install func_timeout
+from func_timeout import func_set_timeout,FunctionTimedOut
+import time
+
+@func_set_timeout(3)  # 定义函数超时时间为3秒
+def task():
+    print("Tt's task.")
+    time.sleep(4)
+    print("No timeout.") # 这句不会执行
+
+# task()
+
+#这个时候我们就可以添加一个捕捉错误的 让他流畅运行
+while True:
+    try:
+        task()
+    except:
+        print("任务超时，正在重新执行")
+
+37）最后可能就是数据量大量就要学习一下数据库 各种数据库 首先可以先使用自带的sqlite3 然后可以学习一下mysql  涉及到数据库的话就涉及到了数据库的一些基础知识 常用语句
+conn = sqlite3.connect("aaa.db")
+c = conn.cursor()
+#创建表
+sql = """create table File(path char(10000) PRIMARY KEY NOT NULL)"""
+c.execute(sql)
+print("数据表创建成功")
+
+#插入一条数据
+# sql = """insert into File (path) values ('{}')"""
+c.execute(sql.format(r"aaaaaaa"))
+conn.commit()
+
+#查询一条数据
+# sql = """select 1 from File where path ='{}'"""
+# c.execute(sql.format(r"aaaaaaa"))
+# a = c.fetchall()
+# print(a)
+# if a:
+#     print("ok")
+# else:
+#     print("no")
+# conn.commit()
+# conn.close()
+
+38）自动化操作浏览器主推Playwright  因为它里面包含自动写代码操作
+pip install playwright
+
+playwright codegen http://www.baidu.com/ -o aaa.py 自动录制脚本
+
+39）介绍控制鼠标的三方库以及pywin32库（这个就比较厉害了 可以设计到注册表 窗口句柄）
+pip install pyautogui
+
+#鼠标点击 默认左键
+pyautogui.click(100, 100)
+
+#单击左键
+pyautogui.click(100, 100, button='left')
+
+#单击右键
+pyautogui.click(100, 100, button='right')
+
+#双击左键
+pyautogui.doubleClick(10, 10)
+
+#鼠标移动到指定坐标位置 并设置操作时间
+pyautogui.dragTo(100, 300, duration=1)
+
+#鼠标滚动 向上滚动 为正数  向下滚动 为负数
+pyautogui.scroll(1000)
+
+#按下按键
+pyautogui.keyDown('shift')
+
+#松开按键
+pyautogui.keyUp('shift')
+
+#组合键
+pyautogui.hotkey('ctrl', 'a')
+
+---模拟键盘输出中文
+from pynput.keyboard import Key, Controller
+keyboard = Controller()
+keyboard.type('这是一句中文。')
+---模拟键盘输出中文
+
+
+40）打包成可执行文件  这时候要重点介绍一下 pip生成环境 和生成相关环境的命令
+打包就是pyinstaller
+一般常用的就是  pyinstaller -F a.py   然后就会生成一个单独的exe可执行文件  如果是在linux上面 则会生成没有后缀的可执行文件 如果遇到权限相关的异常 则一般使用chmod进行可执行文件的权限赋予
+比较大的项目就不可以打包成一个可执行exe了 因为涉及到更新的时候会变得不是那么方便 将功能分解成模块化 便于更新的时候 精准下载更新 而不是一个大的整体 每次更新进行模糊下载
+
+pip生成requirements.txt文件   pip freeze > requirements.txt
+安装requirements.txt依赖    pip install -r requirements.txt
+41)想打包不被反编译看到源码的就先生成pyd文件 然后再进行文件exe的打包 pyinstaller
+#python setup_pyd.py build_ext --inplace
+from distutils.core import setup
+from Cython.Build import cythonize
+
+setup(
+    name='Hello world app',
+    ext_modules=cythonize([
+    "aaa.py",
+    "bbb.py"]),
+)
+
+
+42）操作Windows系统的桌面通知
+from win10toast import ToastNotifier
+toaster = ToastNotifier()
+toaster.show_toast("这是一个测试消息",
+                   "略略略。。。",
+                   icon_path="f.ico",
+                   duration=10)
+
+
+43)Flet的学习 一套代码解决三个端 电脑端（可执行的exe） 移动端 网页端   -----这里也可以作为一个系列
+
+
+https://docs.flutter.dev/release/archive?tab=windows  flutterSDK（打包时需要用到）
+然后根据下面网址的步骤进行
+https://flet.dev/docs/guides/python/packaging-app-for-distribution/#windows-requirements
+
+
+44）pyqt5图形化designer.exe ----- pyqt可以作为单独的系列  这里主要是涉及到更多的软件插件的制作方向 可以结合maya motionbuilder ue
+
+45)网易airtest  也可以录制操作不需要写代码！！！ -----自动化全系列
+
+
+简单真实的需求场景：
+    1.有一天老板说 我这里有三个人邮箱的账号信息 我想要你写一个自动化的脚本 每隔10秒钟登录一下他们的账号 查看下是否有未读邮件
+    根据这个需求 我们先分析 首先 第一个重点是三个人的账号邮箱账号信息xiaoming的账号为xiaoming666，密码是xiaoming888，xiaobai的账号为xiaobai666，密码是xiaobai888，xiaohong的账号为xiaohong666，密码是xiaohong888   然后第二个重点就是轮流 登录查看是否有未读邮件  最后一个重点就是每隔10秒钟
+    所以第一步我们需要将三个人的账号邮箱账号信息整合为一个变量 比如
+    a = [{"xiaoming":{"username":"xiaoming666", "password":"xiaoming888"}}, {"xiaobai":{"username":"xiaobai666","password":"xiaobai888"}}, {"xiaohong":{"username":"xiaohong666", "password":"xiaohong888"}}]
+    简单点儿的话就是
+    a = [{"xiaoming666":"xiaoming888"}, {"xiaobai666":"xiaobai888"}, {"xiaohong666":"xiaohong888"}]
+    这里我们解决了第一步 将已知的信息转化成了编程语言适合使用的形式
+    下面我们来看第二步轮流
+    for i in a:
+        print("登录账号查看未读邮件")
+    第三步每隔10秒钟
+    那么就是每次循环等待十秒钟
+    所以应该是
+    while True:
+
+        time.sleep(10)
+    每一步的简单案例都实现了 最后进行代码合并到一块就是
+    while True:
+        a = [{"xiaoming666":"xiaoming888"}, {"xiaobai666":"xiaobai888"}, {"xiaohong666":"xiaohong888"}]
+        for i in a:
+            print("登录账号查看未读右键")
+        time.sleep(10)
+        print("这里可以增加个输出 表明正在等待")
+
+
+
+    2.根据客户输入的内容进行指定用户名称为文件名，用户输入的实际内容为文件文本的内容
+    user_name = input("请输入用户名")
+    user_input = input("请写一篇不少于500字的作文")
+    with open("{}.txt".format(user_name), "w") as fp:
+        fp.write(user_input)
+    注意这里如果不加encoding为utf8的话文件内容可能为乱码
+    正确答案：
+    user_name = input("请输入用户名")
+    user_input = input("请写一篇不少于500字的作文")
+    with open("{}.txt".format(user_name), "w", encoding="utf8") as fp:
+        fp.write(user_input)
+
+
+
+
+
+
+终极学习地址：https://github.com/vinta/awesome-python  这里面全部是第三方库  根据自己的需求可以学习一些优秀的第三方库 避免自己从零开始进行重复造轮子  或者找自己感兴趣的去学习
+每天可以逛逛https://github.com/trending  相当于编程界的热搜排行榜
+
+
+
+
