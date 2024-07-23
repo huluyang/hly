@@ -1,0 +1,32 @@
+this_is_button.py   按钮
+
+this_is_check_box.py   多选框
+
+this_is_combo_box.py  下拉框
+
+this_is_file_dialog.py  选取文件夹
+
+this_is_frame.py   QFame容器
+
+this_is_label.py  label文本显示
+
+this_is_line_edit.py  单行输入框
+
+this_is_message_box.py  弹窗
+
+this_is_progress_bar.py  进度条
+
+this_is_radio_button.py  单选按钮
+
+this_is_scroll_area.py  滚动区域
+
+this_is_slider.py  滑动条
+
+this_is_status_bar.py  底部状态信息控件
+
+this_is_table_widget.py  表格
+
+this_is_text_edit.py  多行输入框
+
+
+有基础的可跳过 只是简单的举例展示了每个控件的生成方法  适合于没有任何基础的新手
