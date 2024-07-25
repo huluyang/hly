@@ -17,13 +17,11 @@ class Window(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        check_box = QCheckBox('我是第一个多选框', self)
-        check_box.show()
+        QCheckBox('我是第一个多选框', self)
 
-        check_box2 = QCheckBox('我是第二个多选框', self)
-        check_box2.show()
+        self.check_box2 = QCheckBox('我是第二个多选框', self)
 
-        check_box2.move(0, 50)
+        self.check_box2.move(0, 50)
 
 
 app = QApplication(sys.argv)

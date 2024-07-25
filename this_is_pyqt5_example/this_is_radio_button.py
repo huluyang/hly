@@ -17,13 +17,11 @@ class Window(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        radio_button = QRadioButton('我是第一个单选框', self)
-        radio_button.show()
+        QRadioButton('我是第一个单选框', self)
 
-        radio_button2 = QRadioButton('我是第二个单选框', self)
-        radio_button2.show()
+        self.radio_button2 = QRadioButton('我是第二个单选框', self)
 
-        radio_button2.move(0, 50)
+        self.radio_button2.move(0, 50)
 
 
 app = QApplication(sys.argv)

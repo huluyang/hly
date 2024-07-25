@@ -17,9 +17,9 @@ class Window(QMainWindow):  # 注意继承QMainWindow
         self.init_ui()
 
     def init_ui(self):
-        status_bar = QStatusBar()
-        self.setStatusBar(status_bar)
-        status_bar.showMessage('你好呀', 5000)  # 消息会显示在状态栏上，5秒后自动消失
+        self.status_bar = QStatusBar()
+        self.setStatusBar(self.status_bar)
+        self.status_bar.showMessage('你好呀', 5000)  # 消息会显示在状态栏上，5秒后自动消失
 
 
 app = QApplication(sys.argv)

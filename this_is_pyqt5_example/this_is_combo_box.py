@@ -17,11 +17,10 @@ class Window(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        combo_box = QComboBox(self)
-        combo_box.addItem('第一个')
-        combo_box.addItem('第二个')
-        combo_box.addItems(['第三个', '第四个', '第五个', '第六个', '第七个'])
-        combo_box.show()
+        self.combo_box = QComboBox(self)
+        self.combo_box.addItem('第一个')
+        self.combo_box.addItem('第二个')
+        self.combo_box.addItems(['第三个', '第四个', '第五个', '第六个', '第七个'])
 
 
 app = QApplication(sys.argv)

@@ -17,8 +17,8 @@ class Window(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        btn = QPushButton('点击选择文件夹', self)
-        btn.clicked.connect(self.show_message)
+        self.btn = QPushButton('点击选择文件夹', self)
+        self.btn.clicked.connect(self.show_message)
 
     def show_message(self):
         select_dir = QFileDialog.getExistingDirectory(self, '这是选取文件夹弹窗的标题', 'C:/')

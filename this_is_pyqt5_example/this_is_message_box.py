@@ -17,8 +17,8 @@ class Window(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        btn = QPushButton('点击显示弹窗', self)
-        btn.clicked.connect(self.show_message)
+        self.btn = QPushButton('点击显示弹窗', self)
+        self.btn.clicked.connect(self.show_message)
 
     def show_message(self):
         QMessageBox.information(self, '这是弹窗的标题', '这是弹窗的详细内容')

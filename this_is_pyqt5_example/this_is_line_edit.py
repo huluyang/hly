@@ -18,8 +18,7 @@ class Window(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        line_edit = QLineEdit(self)
-        line_edit.show()
+        QLineEdit(self)
 
 
 app = QApplication(sys.argv)

@@ -17,8 +17,8 @@ class Window(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        slider = QSlider(self)
-        slider.setRange(0, 100)
+        self.slider = QSlider(self)
+        self.slider.setRange(0, 100)
 
 
 app = QApplication(sys.argv)

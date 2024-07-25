@@ -17,9 +17,9 @@ class Window(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        frame = QFrame(self)
-        frame.setStyleSheet('QFrame {background-color: red; border: 1px solid black;}')  # css样式
-        frame.resize(100, 100)
+        self.frame = QFrame(self)
+        self.frame.setStyleSheet('QFrame {background-color: red; border: 1px solid black;}')  # css样式
+        self.frame.resize(100, 100)
 
 
 app = QApplication(sys.argv)

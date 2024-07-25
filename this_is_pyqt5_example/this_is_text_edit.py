@@ -18,9 +18,7 @@ class Window(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        text_edit = QTextEdit(self)
-        text_edit.move(10, 10)
-        text_edit.show()
+        QTextEdit(self)
 
 
 app = QApplication(sys.argv)

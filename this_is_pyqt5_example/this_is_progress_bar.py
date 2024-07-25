@@ -22,11 +22,10 @@ class Window(QWidget):
 
         self.progress_bar.setMinimum(0)
         self.progress_bar.setMaximum(100)
-        self.progress_bar.show()
 
-        start_btn = QPushButton('进度条开始变化', self)
-        start_btn.move(50, 50)
-        start_btn.clicked.connect(self.start_progress)
+        self.start_btn = QPushButton('进度条开始变化', self)
+        self.start_btn.move(50, 50)
+        self.start_btn.clicked.connect(self.start_progress)
 
     def start_progress(self):
         for i in range(101):

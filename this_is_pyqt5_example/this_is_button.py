@@ -14,12 +14,10 @@ class Window(QWidget):
         super().__init__()
         self.setWindowTitle('QPushButton_Example')
         self.resize(250, 150)
-
         self.init_ui()
 
     def init_ui(self):
-        btn = QPushButton('我是按钮', self)
-        btn.show()
+        QPushButton('我是按钮', self)
 
 
 app = QApplication(sys.argv)

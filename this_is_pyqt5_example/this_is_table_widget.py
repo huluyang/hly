@@ -17,13 +17,13 @@ class Window(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        table_widget = QTableWidget(self)
-        table_widget.setRowCount(2)
-        table_widget.setColumnCount(2)
-        table_widget.setItem(0, 0, QTableWidgetItem('第一行的第一列'))
-        table_widget.setItem(0, 1, QTableWidgetItem('第一行的第二列'))
-        table_widget.setItem(1, 0, QTableWidgetItem('第二行的第一列'))
-        table_widget.setItem(1, 1, QTableWidgetItem('第二行的第二列'))
+        self.table_widget = QTableWidget(self)
+        self.table_widget.setRowCount(2)
+        self.table_widget.setColumnCount(2)
+        self.table_widget.setItem(0, 0, QTableWidgetItem('第一行的第一列'))
+        self.table_widget.setItem(0, 1, QTableWidgetItem('第一行的第二列'))
+        self.table_widget.setItem(1, 0, QTableWidgetItem('第二行的第一列'))
+        self.table_widget.setItem(1, 1, QTableWidgetItem('第二行的第二列'))
 
 
 app = QApplication(sys.argv)
