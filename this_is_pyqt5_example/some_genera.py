@@ -1,7 +1,6 @@
 import sys
-
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QGraphicsOpacityEffect
 
 """
 
@@ -46,6 +45,11 @@ class Window(QWidget):
 
         label.setEnabled(True)  # 设置控件是否可用 一般用于在满足一些条件的情况下比如输入框输入了正确的内容之后 某些按钮控件才可以被点击
 
+        # 设置控件的透明度
+        op = QGraphicsOpacityEffect()
+        op.setOpacity(0.1)
+        label.setGraphicsEffect(op)
+
         print(label.text())  # 获取控件的文本内容
 
         label.mousePressEvent = self.mouse_press  # 设置控件的鼠标点击事件(就是点击鼠标的时候触发的函数)
@@ -63,7 +67,6 @@ class Window(QWidget):
 
         self.keyReleaseEvent = self.key_release  # 设置控件的键盘释放事件（就是松开键盘的时候触发的函数）
 
-
         # 以下为设置控件的样式案例
         label.setStyleSheet('background-color:rgb(255,0,0)')  # 设置控件的背景颜色
         label.setStyleSheet('color:rgb(0,0,0)')  # 设置控件的文本颜色
@@ -80,9 +83,10 @@ class Window(QWidget):
         label.setStyleSheet('font-weight:bold')  # 设置控件的字体加粗
         label.setStyleSheet('font-style:italic')  # 设置控件的字体倾斜
         label.setStyleSheet('background-image:url(c:/image/1.jpg)')  # 设置控件的背景图片
+        # border 表示边框
         label.setStyleSheet('border-image:url(c:/image/1.jpg)')  # 设置控件的背景图片  建议使用
-        label.setStyleSheet(':hover{background-color:rgb(0,0,0)}') # 设置控件的鼠标悬停时候的背景颜色
-        label.setStyleSheet('border:1px solid rgb(0,0,0)')  # 设置控件的边框
+        label.setStyleSheet(':hover{background-color:rgb(0,0,0)}')  # 设置控件的鼠标悬停时候的背景颜色
+        label.setStyleSheet('border:1px solid rgb(0,0,0)')  # 设置控件的边框 solid 表示实线
         label.setStyleSheet(  # 注意多个样式的时候需要在每一个样式后面添加一个分号 否则不会生效
             'border: 7px;'
             'border-style: solid;'
@@ -105,6 +109,7 @@ class Window(QWidget):
             print("你点击了左键")
         elif event.button() == Qt.RightButton:
             print("你点击了右键")
+
     def mouse_release(self, event):  # 同上方mouse_press中的使用方法获取event
         print("鼠标释放我了，想自定义干点儿啥请自由发挥")
 
@@ -117,7 +122,8 @@ class Window(QWidget):
         print("鼠标进入我了，想自定义干点儿啥请自由发挥")
         print("鼠标目前的坐标为：", event.pos(), "鼠标目前的坐标x轴的值为：", event.pos().x(), "鼠标目前的坐标y轴的值为：",
               event.pos().y())
-    def leave_event(self, event): # 这里离开了就不能通过event.pos()获取鼠标的坐标了会报错 因为离开了 不在监控范围了
+
+    def leave_event(self, event):  # 这里离开了就不能通过event.pos()获取鼠标的坐标了会报错 因为离开了 不在监控范围了
         print("鼠标离开我了，想自定义干点儿啥请自由发挥")
 
     def key_press(self, event):
@@ -131,15 +137,9 @@ class Window(QWidget):
             print("你按下了C键")
         elif event.key() == Qt.Key_D:
             print("你按下了D键")
+
     def key_release(self, event):
         print("有键盘按键被释放了，想自定义干点儿啥请自由发挥")
-
-
-
-
-
-
-
 
 
 app = QApplication(sys.argv)

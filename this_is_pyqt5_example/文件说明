@@ -28,9 +28,15 @@ this_is_table_widget.py  表格
 
 this_is_text_edit.py  多行输入框
 
+this_is_widget.py  窗口
+
 this_is_menu.py  右键菜单
 
+this_is_movie.py  动画控件
+
 this_is_QSystemTrayIcon.py  系统托盘图标
+
+detailed_widget.py  窗口详细使用
 
 detailed_button.py  按钮详细使用
 

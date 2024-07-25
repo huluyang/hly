@@ -1,6 +1,5 @@
 import sys
-
-from PyQt5.QtWidgets import QApplication, QWidget, QScrollArea, QTableWidgetItem, QFrame, QLabel, QVBoxLayout
+from PyQt5.QtWidgets import QApplication, QWidget, QScrollArea, QFrame, QLabel, QVBoxLayout
 
 """
 

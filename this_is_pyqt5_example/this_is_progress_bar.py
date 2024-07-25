@@ -1,6 +1,5 @@
 import sys
 import time
-
 from PyQt5.QtWidgets import QApplication, QWidget, QProgressBar, QPushButton
 
 """
