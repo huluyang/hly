@@ -42,6 +42,10 @@ detailed_button.py  按钮详细使用
 
 detailed_label.py  文本显示详细使用
 
+detailed_check_box.py  多选框详细使用
+
+detailed_radio_button.py  单选框详细使用
+
 some_genera.py  大部分控件通用的函数
 
 
