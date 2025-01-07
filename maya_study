@@ -1,0 +1,62 @@
+# 用于列出当前场景中对象
+cmds.ls()
+
+# 用于查询指定对象或通道的关键帧信息
+cmds.keyframe()
+
+# 用于获取对象属性值 比如 位置 旋转 缩放 材质属性等
+cmds.getAttr()
+
+# 用于处理文件 比如打开 保存 导入 导出
+cmds.file()
+
+# 用于调整当前视图
+cmds.viewFit()
+
+# 用于设置对象属性值 比如 位置 旋转 缩放 颜色等
+cmds.setAttr()
+
+# 用于创建快速浏览动画
+cmds.playblast()
+
+# 用于选择对象
+cmds.select()
+
+# 用于复制皮肤权重
+cmds.CopySkinWeights()
+
+# 用于创建和管理模型面板
+cmds.modelPanel()
+
+# 用于创建和管理模型编辑器
+cmds.modelEditor()
+
+# 用于设置焦点
+cmds.setFocus()
+
+# 用于创建或管理屏幕上的浮动显示元素
+cmds.headsUpDisplay()
+
+# 用于隔离选择对象
+cmds.isolateSelect()
+
+# 用于连接两个属性
+cmds.connectAttr()
+
+# 用于查询属性连接
+cmds.listConnections()
+
+# 用于导出Alembic文件
+cmds.AbcExport()
+
+# 用于获取指定类型的对象
+cmds.objectType()
+
+# 查询一个对象的父级或子级对象
+cmds.listRelatives()
+
+# 用于创建和管理时间控制器
+cmds.timeControl()
+
+# 用于查询或设置当前时间帧
+cmds.currentTime()
