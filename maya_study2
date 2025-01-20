@@ -1,0 +1,870 @@
+from maya import cmds
+
+cmds.polyCube()  # 创建一个cube方块
+
+cube = cmds.polyCube()
+
+cubeShape = cube[0]
+
+circle = cmds.circle()  # 创建一个圆圈
+
+circleShape = circle[0]
+
+cmds.parent(cubeShape, circleShape)  # 设置为父子级关系
+
+cmds.setAttr("pCube2.tx", lock=True)  # 将x坐标参数锁定
+
+cmds.setAttr("pCube2.ty", lock=True)  # 将y坐标参数锁定
+
+cmds.setAttr(cubeShape+".translate", lock=True)
+
+cmds.setAttr(cubeShape+".rotate", lock=True)
+
+cmds.setAttr(cubeShape+".scale", lock=True)
+
+cmds.select(circleShape)  # 选中该物体
+
+print(cmds.ls())  #
+
+selection = cmds.ls(selection=True)
+
+print(selection)
+
+if len(selection) == 0:
+
+    selection = cmds.ls(dag=True, long=True)
+
+selection.sort()
+
+print(selection)
+
+for obj in selection:
+
+    print(obj)
+
+    print(cmds.objectType(obj))
+
+    shortName = obj.split("|")[-1]
+
+    children = cmds.listRelatives(obj, children=True, fullPath=True) or []
+
+    if len(children) == 1:
+
+        child = children[0]
+
+        objType = cmds.objectType(child)
+
+    else:
+
+        objType = cmds.objectType(obj)
+
+    print(objType)
+
+    if objType == "mesh":
+
+        suffix = "geo"
+
+    elif objType == "joint":
+
+        suffix = "jnt"
+
+    elif objType == "camera":
+
+        print("Skipping camera")
+
+        continue
+
+    else:
+
+        suffix = "grp"
+
+    if obj.endswith(suffix):
+        continue
+
+    newName = shortName + "_" + suffix
+
+    cmds.rename(obj, newName)
+
+from maya import cmds
+
+def createGear(teeth=10, length=0.3):
+    spans = teeth * 2
+
+    transform, constructor = cmds.polyPipe(subdivisionsAxis=spans)
+    sideFaces = range(spans*2, spans*3, 2)
+    cmds.select(clear=True)
+    for face in sideFaces:
+        cmds.select('%s.f[%s]' % (transform, face), add=True)
+    extrude = cmds.polyExtrudeFace(localTranslateZ=length)[0]
+    return transform, constructor, extrude
+
+def changeTeeth(constructor, extrude, teeth=10, length=0.3):
+    spans = teeth * 2
+    cmds.polyPipe(constructor, edit=True, subdivisionsAxis=spans)
+    sideFaces = range(spans*2, spans*3, 2)
+    faceNames = []
+    for face in sideFaces:
+        faceName = 'f[%s]' % (face)
+        faceNames.append(faceName)
+
+    cmds.setAttr('%s.inputComponents' % (extrude), len(faceNames), *faceNames, type="componentList")
+    cmds.polyExtrudeFacet(extrude, edit=True, ltz=length)
+
+obj = cmds.ls(selection=True)[0]
+cmds.listAttr(obj, keyable=True)
+currentTime = cmds.currentTime(query=True)
+# 用于列出当前场景中对象
+cmds.ls()
+
+# 用于查询指定对象或通道的关键帧信息
+cmds.keyframe()
+
+# 用于获取对象属性值 比如 位置 旋转 缩放 材质属性等
+cmds.getAttr()
+
+# 用于处理文件 比如打开 保存 导入 导出
+cmds.file()
+
+# 用于调整当前视图
+cmds.viewFit()
+
+# 用于设置对象属性值 比如 位置 旋转 缩放 颜色等
+cmds.setAttr()
+
+# 用于创建快速浏览动画
+cmds.playblast()
+
+# 用于选择对象
+cmds.select()
+
+# 用于复制皮肤权重
+cmds.CopySkinWeights()
+
+# 用于创建和管理模型面板
+cmds.modelPanel()
+
+# 用于创建和管理模型编辑器
+cmds.modelEditor()
+
+# 用于设置焦点
+cmds.setFocus()
+
+# 用于创建或管理屏幕上的浮动显示元素
+cmds.headsUpDisplay()
+
+# 用于隔离选择对象
+cmds.isolateSelect()
+
+# 用于连接两个属性
+cmds.connectAttr()
+
+# 用于查询属性连接
+cmds.listConnections()
+
+# 用于导出Alembic文件
+cmds.AbcExport()
+
+# 用于获取指定类型的对象
+cmds.objectType()
+
+# 查询一个对象的父级或子级对象
+cmds.listRelatives()
+
+# 用于创建和管理时间控制器
+cmds.timeControl()
+
+# 用于查询或设置当前时间帧
+cmds.currentTime()
+
+# 用于创建下拉菜单
+cmds.optionMenu()
+
+# 用于创建文本输入框
+cmds.inField()
+
+# 用于创建自定义布局
+cmds.formLayout()
+
+# 用于创建文本控件
+cmds.text()
+
+# 用于创建可滚动的文本列表控件
+cmds.textScrollList()
+
+# 用于创建面板布局
+cmds.paneLayout()
+
+# 用于创建窗口
+cmds.window()
+
+# 用于创建菜单项
+cmds.menuItem()
+
+# 用于创建按钮
+cmds.button()
+
+import pymel.core as pm
+cube = pm.polyCube()
+cube[0].rename("Foo")
+pm.PyNode()
+pm.delete()
+pm.colorEditor()
+pm.ls(type=["areaLight"])
+pm.pointLight
+pm.spotLight
+pm.directionalLight
+pm.shadingNode
+pm.workspaceControl()
+pm.deleteUI()
+pm.internalVar()
+pm.objectType()
+
+import maya.api.OpenMaya as om2
+om2.MGlobal.displayError("API 2.0 Error")
+
+
+import maya.OpenMaya as om1
+om1.MGlobal.displayError("API 1.0 Error")
+
+import maya.api.OpenMaya as om
+transform_fn = om.MFnDagNode()
+transform_obj = transform_fn.create("transform", "pSphere1")
+
+mesh_fn = om.MFnDagNode()
+mesh_obj = mesh_fn.create("mesh", "pSphereShape1", transform_obj)
+
+sphere_fn = om.MFnDependencyNode()
+sphere_obj = sphere_fn.create("polySphere")
+
+src_plug = sphere_fn.findPlug("output", False)
+
+dest_plug = mesh_fn.findPlug("inMesh", False)
+
+dg_mod = om.MDGModifier()
+dg_mod.connect(src_plug, dest_plug)
+dg_mod.doIt()
+
+selection_list = om.MSelectionList()
+selection_list.add("initialShadingGroup")
+
+set_fn = om.MFnSet(selection_list.getDependNode(0))
+set_fn.addMember(mesh_obj)
+
+
+import maya.cmds as cmds
+cmds.loadPlugin("aaaa")
+cmds.unloadPlugin("aaaa")
+om.MFnPlugin()
+om.MPxCommand()
+cmds.evalDeferred()
+
+om.MGlobal.getActiveSelectionList()
+
+
+#---
+import maya.cmds as cmds
+
+node_name = "pCube1"
+attribute_name = "translate"
+full_name = "{0}.{1}".format(node_name, attribute_name)
+
+#Get Attribute Value
+attribute_value = cmds.getAttr(full_name)
+print("{0}:{1}".format(full_name, attribute_value))
+
+#Set Attribute Value
+cmds.setAttr(full_name, 1.0)
+
+
+#---
+import maya.api.OpenMaya as om
+
+node_name = "pCube1"
+attribute_name = "translateY"
+
+selection_list = om.MSelectionList()
+selection_list.add(node_name)
+
+obj = selection_list.getDependNode(0)
+
+if obj.hasFn(om.MFn.kTransform):
+    transform_fn = om.MFnTransform(obj)
+
+    plug = transform_fn.findPlug(attribute_name, False)
+
+    attribute_value = plug.asDouble()
+    print("{0}:{1}".format(plug, attribute_value))
+
+    plug.setDouble(2.0)
+
+#---
+import maya.api.OpenMaya as om
+
+node_name = "pCube1"
+attribute_name = "translate"
+
+selection_list = om.MSelectionList()
+selection_list.add(node_name)
+
+obj = selection_list.getDependNode(0)
+
+if obj.hasFn(om.MFn.kTransform):
+    transform_fn = om.MFnTransform(obj)
+
+    plug = transform_fn.findPlug(attribute_name, False)
+
+    if plug.isCompound:
+        for i in range(plug.numChildren()):
+            child_plug = plug.child(i)
+            attribute_value = plug.asDouble()
+            print("{0}:{1}".format(plug, attribute_value))
+
+#---
+import maya.api.OpenMaya as om
+
+node_name = "pCube1"
+attribute_name = "translateY"
+
+selection_list = om.MSelectionList()
+selection_list.add(node_name)
+
+obj = selection_list.getDependNode(0)
+
+if obj.hasFn(om.MFn.kTransform):
+    transform_fn = om.MFnTransform(obj)
+
+    translation = transform_fn.translation(om.MSpace.kTransform)
+    transform_obj[1] = 3.0
+    transform_fn.setTranslation(translation, om.MSpace.kTransform)
+
+
+#createNode # 创建节点
+#delete # 删除节点
+#parent # 建立层级关系
+#listRelatives # 查询层级关系
+#addAttr # 添加属性
+#deleteAttr # 删除属性
+#connectAttr # 连接属性
+
+cmds.connectAttr("source1.translateX", "destination.translateX")
+cmds.connectAttr("source1.translateY", "destination.translateY")
+cmds.isConnected("source1.translateY", "destination.translateY")
+#listConnecttions #查询属性连接
+cmds.listConnections("source1.translateX")
+cmds.listConnections("source1.translateX", p=1)
+cmds.listConnections("destination.translateX", p=1)
+cmds.listConnections("destination.translateX", p=1, c=1)
+cmds.listConnections("source1.translateX", p=1, d=1)
+cmds.listConnections("source1.translateX", p=1, d=0)
+
+#ls #查询节点
+#file #文件操作
+
+cmds.file(new=1)
+cmds.file(new=1, f=1)
+cmds.file("D:/ceshi/aaa.ma", pr=1, ea=1, f=1, type="mayaAscii")
+cmds.file("D:/ceshi/aaa.ma", open=1, f=1)
+
+cmds.file("D:/ceshi/aaa.ma", r=1, type="mayaAscii", ns="AAA")
+cmds.file("D:/ceshi/aaa.ma", rr=1)
+
+cmds.AbcExport()
+
+
+
+#---
+from maya import cmds
+polygons = []
+for transform in cmds.ls(type="transform"):
+    print(transform)
+    meshs = cmds.listRelatives(transform, s=1, type="mesh")
+    if meshs:
+        polygons.append(transform)
+    print(meshs)
+print(polygons)
+
+from maya import mel
+
+mel_cmd = 'setAttr "pSpherel.overrideLevelOfDetail" 1;'
+mel.eval(mel_cmd)  #使用python mel库 直接执行mel命令
+
+#---
+import maya.cmds as cmds
+
+cmds.polyCube()
+cmds.ls()
+#---
+
+from maya import cmds
+
+def transforms_from_shapes_nodes(shapes):
+    transforms = []
+
+    for obj in shapes:
+        if cmds.objectType(obj, isAType="shape"):
+            parents = cmds.listRelatives(obj, parents=True)
+            if parents:
+                transforms.append(parents[0])
+    # cmds.listRelatives("topShape", parent=True)
+
+    return transforms
+
+def camera_transforms():
+    camera_shapes = cmds.ls(cameras=True)
+    cameras = transforms_from_shapes_nodes(camera_shapes)
+    return cameras
+if __name__ == '__main__':
+    cameras = camera_transforms()
+
+    cmds.window(title="Cameras")
+    cmds.paneLayout()
+    cmds.textScrollList(append=cameras)
+    cmds.showWindow()
+#---
+
+
+#---
+
+import importlib
+
+import aaa
+
+importlib.reload(aaa)  #aaa相当于aaa.py
+#---
+
+#---
+import sys
+for p in sys.path:
+    print(p)
+#---
+
+#---
+import os
+
+print(os.environ["PYTHONPATH"])
+
+#---
+
+#---
+import random
+
+from  maya import cmds
+
+def set_random_position(transform_node):
+    tx = random.randint(-10, 10)
+    ty = random.randint(-10, 10)
+    tz = random.randint(-10, 10)
+    cmds.setAttr(f"{transform_node}.translate", tx, ty, tz, type="double3")
+
+def mesh_scatter(num_meshes, mesh_type="cube"):
+    mesh_transforms = []
+
+    is_random = mesh_type == "random"
+
+    for i in range(num_meshes):
+        if is_random:
+            mesh_type = random.choice(["cube", "sphere", "cylinder"])
+
+        if mesh_type == "sphere":
+            transform_node = cmds.polySphere()[0]
+        elif mesh_type == "cylinder":
+            transform_node = cmds.polyCylinder()[0]
+        else:
+            transform_node = cmds.polyCube()[0]
+
+        set_random_position(transform_node)
+
+        mesh_transforms.append(transform_node)
+    cmds.group(mesh_transforms, name="scattered_meshes")
+
+if __name__ == '__main__':
+    cmds.file(new=True, force=True)
+
+    mesh_scatter(20, mesh_type="sphere")
+#---
+
+#---
+from functools import partial
+from maya import cmds
+
+def generate_meshes(mesh_type_option, mesh_count_field, *args):
+    cmds.file(new=True, force=True)
+
+    mesh_type = cmds.optionMenu(mesh_type_option, q=True, value=True)
+    mesh_count = cmds.inField(mesh_count_field, q=True, value=True)
+    mesh_scatter(mesh_count, mesh_type)
+
+def creat_ui():
+    window = cmds.window(title="Randomizer", width=300)
+    layout = cmds.formLayout()
+
+    mesh_type_option = cmds.optionMenu(label="Mesh Type:", parent=layout)
+    cmds.menuItem(label="cube")
+    cmds.menuItem(label="sphere")
+    cmds.menuItem(label="cylinder")
+    cmds.menuItem(label="random")
+
+    mesh_count_label = cmds.text(label="Mesh Count:", parent=layout)
+    mesh_count_field = cmds.intField(value=20, minValue=1, parent=layout)
+
+    generate_btn = cmds.button(label="Generate", parent=layout, command=partial(generate_meshes, mesh_type_option, mesh_count_field))
+
+    cmds.formLayout(layout, e=True, af=[(mesh_type_option, "left", 4), (mesh_type_option, "top", 4)])
+
+    cmds.formLayout(layout, e=True, af=[(mesh_count_label, "left", 4)], ac=[(mesh_count_label, "top", 6, mesh_type_option), (mesh_count_field, "top", 4, mesh_type_option)])
+
+
+
+#---
+
+#---
+import maya.OpenMaya as om
+om.MGlobal.displayError("Something is very wrong")  # 右下角提醒错误信息
+om.MGlobal.displayWarning("Something is incorrect")  # 右下角提醒警告信息
+om.MGlobal.displayInfo("Something useful user info")  # 右下角提醒正常信息
+#---
+
+#---
+import maya.cmds as cmds
+import maya.mel as mel
+import maya.OpenMaya as om
+
+def get_keyframe_times(skip_existing=False):
+    keyframe_range = get_playback_range()
+    range_start = keyframe_range[0]
+    range_end = keyframe_range[1]
+    keyframe_list = list(range(int(range_start), int(range_end + 1)))
+    if skip_existing:
+        filtered_list = []
+        for keyframe_time in keyframe_list:
+            if not keyframe_exists(keyframe_time):
+                filtered_list.append(keyframe_time)
+    return keyframe_list
+
+def get_playback_range():
+    """获取当前播放范围"""
+    range_start = cmds.playbackOptions(q=True, minTime=True)
+    range_end = cmds.playbackOptions(q=True, maxTime=True)
+    return [range_start, range_end]
+
+def get_selected_range():
+    """获取选中的播放范围"""
+    main_time_control = mel.eval("$temp = $gPlayBackSlider")
+    if cmds.timeControl(main_time_control, q=True, rangeVisible=True):
+        selected_range = cmds.timeControl(main_time_control, q=True, rangeArray=True)
+        selected_range[1] -= 1
+        return selected_range
+    return None
+
+def set_current_time(new_time):
+    cmds.currentTime(new_time)
+
+def keyframe_exists(keyframe_time):
+    keyframe_count = cmds.keyframe(q=True, keyframeCount=True, time=(keyframe_time,))
+    return keyframe_count > 0
+
+def insert_keyframe(keyframe_time, force_overwrite=False):
+
+    selection_list = cmds.ls(sl=True)
+    if not selection:
+        om.MGlobal.displayWarning("No objects selected")
+        return
+    if not force_overwrite:
+        if keyframe_exists(keyframe_time):
+            raise RuntimeError(f"A keyframe exists a frame: {keyframe_time}")
+
+    cmds.setKeyframe(time=keyframe_time)  # 设置关键帧 （需要在场景中选中对象） 另一种使用方式cmds.setKeyframe(time=[1, 11, 21])
+if __name__ == '__main__':
+    for new_time in range(1, 21):
+        # set_current_time(new_time)
+        insert_keyframe(new_time)
+#---
+
+#---
+import maya.cmds as cmds
+
+# 创建一个小球（Sphere）
+cmds.polySphere(name='mySphere', radius=1)
+# 创建一个立方体（Cube）
+cmds.polyCube(name='myCube', width=1, height=1, depth=1)
+# 创建一个平面（Plane）
+cmds.polyPlane(name='myPlane', width=10, height=10)
+# 移动物体
+cmds.move(0, 5, 0, 'mySphere')  # 将球体移动到 (0, 5, 0)
+# 旋转物体
+cmds.rotate(45, 0, 0, 'myCube')  # 将立方体旋转45度
+# 缩放物体
+cmds.scale(2, 2, 2, 'myPlane')  # 将平面缩放至两倍大小
+# 创建点光源（Point Light）
+cmds.pointLight(name='myPointLight')
+# 创建一个摄像机（Camera）
+cmds.camera(name='myCamera')
+# 设置动画关键帧
+cmds.setKeyframe('mySphere', attribute='translateY', value=0, time=1)
+cmds.setKeyframe('mySphere', attribute='translateY', value=10, time=10)
+#---
+# 创建一个圆柱体
+cmds.polyCylinder(name='myCylinder', radius=1, height=5)
+
+# 创建一个圆锥体
+cmds.polyCone(name='myCone', radius=1, height=2)
+
+# 创建一个平面（NURBS）
+cmds.nurbsPlane(name='myNURBSPlane')
+
+# 创建一个NURBS球体
+cmds.sphere(name='myNURBSphere')
+
+# 设置物体的颜色
+cmds.setAttr('mySphere.overrideEnabled', 1)  # 启用覆盖颜色
+cmds.setAttr('mySphere.overrideColor', 13)   # 设置颜色为红色（13为红色索引）
+
+# 编辑多边形边
+cmds.polyExtrudeEdge('myCube.e[0]', ltz=2)  # 在立方体上拉伸第一条边
+
+# 删除多边形面
+cmds.polyDelFacet('myCube.f[0]')  # 删除立方体的第一面
+
+# 设置物体的位置
+cmds.setAttr('mySphere.translate', 0, 5, 0)
+
+# 设置旋转
+cmds.setAttr('myCube.rotate', 45, 90, 0)
+
+# 创建一个运动路径并连接到指定物体
+path = cmds.curve(d=3,p=[(-10, 0, 0),(-6, 0, 10),(-3, 0, -10),(10, 0, 0)],k=[0, 0, 0, 1, 1, 1])
+
+cmds.pathAnimation('mySphere', c=path, follow=True, followAxis='x')
+
+
+# 创建一个材质
+lambert_shader = cmds.shadingNode('lambert', asShader=True, name='myLambert')
+cmds.setAttr(lambert_shader + '.color', 0, 0, 1, type="double3")  # 设置为蓝色
+
+# 创建一个纹理并连接到材质
+file_texture = cmds.shadingNode('file', asTexture=True, name='myTexture')
+cmds.setAttr(file_texture + '.fileTextureName', 'D:/ceshi/ue/vvv1.png', type="string")  # 设置纹理路径
+cmds.connectAttr(file_texture + '.outColor', lambert_shader + '.color', force=True)
+
+
+# 创建方向光
+cmds.directionalLight(name='myDirectionalLight', intensity=1)
+
+# 创建平行光
+cmds.pointLight(name='myPointLight', intensity=1)
+
+# 创建聚光灯
+cmds.spotLight(name='mySpotLight', intensity=1, dropOff=30)
+
+
+
+# 创建一个新的摄像机
+camera_name = cmds.camera(name='myCamera')[0]
+
+# 设置摄像机位置和朝向
+cmds.setAttr(camera_name + '.translate', 0, 5, 10)
+cmds.setAttr(camera_name + '.rotate', -30, 0, 0)
+
+# 创建一个目标约束
+cmds.aimConstraint('mySphere', camera_name, aim=[0, 0, -1], upVector=[0, 1, 0], worldUpType="vector", worldUpVector=[0, 1, 0])
+
+
+# 选择特定物体
+cmds.select('mySphere')
+
+# 选择所有的多边形
+cmds.select(all=True, r=True)
+
+# 选择匹配名称的对象
+cmds.select('*my*', add=True)  # 选择名称中包含 "my" 的所有对象
+
+
+cmds.polySphere(name='mySphere', radius=1)
+cmds.polyCylinder(name='myCylinder', radius=1, height=5)
+# 创建组
+group_name = cmds.group('mySphere', 'myCamera1', name='myGroup')
+
+# 添加父子关系
+cmds.parent('myCylinder', 'myGroup')
+
+# 解散群组
+cmds.ungroup('myGroup')
+
+
+
+# 获取选择的物体
+selected_objects = cmds.ls(selection=True)
+
+# 打印选定的物体名称
+print(selected_objects)
+
+# 创建一个自定义属性
+cmds.addAttr('mySphere', longName='customAttr', attributeType='double', defaultValue=0)
+
+# 设置自定义属性值
+cmds.setAttr('mySphere.customAttr', 5)
+
+
+# 这是创建
+cmds.polyCube(name="myCube", width=10)
+# 这是获取edit中的指定物体
+cmds.polyCube(name="myCube", edit=True, width=15)
+# 这是查询 query表示查询  width表示查询width属性 和 query一起使用的
+cmds.polyCube(name="myCube", query=True, width=True)
+
+# mel
+# ploySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+
+# python
+cmds.polySphere(r=1, sx=20, sy=20, ax=(0, 1, 0), cuv=2, ch=1)
+
+print(cmds.help("polySphere"))  # 打印该函数有哪些参数
+
+cube = cmds.polyCube()
+
+
+cmds.move(1, 0, 0, cube[0], localSpace=True)
+cmds.rotate(0, 45, 0, cube[0], relative=True)
+cmds.scale(2, 2, 3, cube[0])
+
+cube_t = cmds.xform(cube[0], query=True, translation=True)
+
+
+print(cube_t)
+
+cmds.xform(cube[0], translation=cube_t)  # 将cube物体的translation复制为cube_t的值
+
+tx = cmds.getAttr(cube[0] + ".translateX")
+ty = cmds.getAttr(cube[0] + ".translateY")
+tz = cmds.getAttr(cube[0] + ".translateZ")
+
+color_attr = cmds.getAttr("lambert1.color")
+cmds.setAttr("material_test.color", color_attr[0][0],
+                                    color_attr[0][1],
+                                    color_attr[0][2])
+
+cmds.connectAttr(cube[0] + ".translateX", cube2[0] + ".translateX")
+cmds.connectAttr(cube[0] + ".translateX", "lambert1.colorR")
+cmds.disconnectAttr(cube[0] + ".translateX", cube2[0] + ".translateX")
+
+
+# 判断类型
+cmds.objectType(cube[0])
+
+cmds.orientConstraint()
+
+cmds.parentConstraint()
+
+a = [1, 2, 3]
+b = [4, 5, 6]
+for i in zip(a,b):
+    print(i)
+for i in enumerate(a):
+    print(i)
+
+
+
+#---
+import maya.cmds as cmds
+
+cube = cmds.polyCube()
+cube_width = cmds.polyCube("pCube1", query=True, width=True)
+print(cube_width)
+
+esfera = cmds.polySphere(radius=cube_width/2)
+
+cmds.move(-1, 0, 0, cube[0], relative=True)
+cmds.move(-1, 0, 0, cube[0], localSpace=True)
+cmds.rotate(0, 45, 0, cube[0], relative=True)
+
+
+cube_t = cmds.xform(cube[0], query=True, translation=True)
+print(cube_t)
+
+cmds.xform(esfera[0], translation=cube_t)
+
+cube_bb = cmds.xform(cube[0], query=True, bb=True)
+print(cube_bb)
+
+cube_matrix=cmds.xform(cube[0], query=True, matrix=True)
+print(cube_matrix)
+
+tx = cmds.getAttr(cube[0] + ".translateX")
+ty = cmds.getAttr(cube[0] + ".translateY")
+tz = cmds.getAttr(cube[0] + ".translateZ")
+print(tx)
+
+cmds.setAttr(esfera[0] + ".translateX", tx)
+cmds.setAttr(esfera[0] + ".translateY", ty)
+cmds.setAttr(esfera[0] + ".translateZ", tz)
+
+
+get_translate = cmds.getAttr(cube[0] + ".translate")
+print(get_translate)
+cmds.setAttr(esfera[0]+".translate", get_translate[0][0],
+get_translate[0][1],
+get_translate[0][2])
+
+
+
+color_attr = cmds.getAttr("lambert1.color")
+
+print(color_attr)
+
+
+cmds.connectAttr(esfera[0]+".translateX", cube[0] + ".rotateX")
+
+cmds.disconnectAttr(esfera[0]+".translateX", cube[0] + ".rotateX")
+#---
+import maya.cmds as cmds
+
+selected = cmds.ls(selection=True)
+if len(selected) == 0:
+    cmds.warning("No has selectionado ")
+elif len(selected) > 1:
+    cmds.warning("por")
+else:
+    if cmds.objectType(selected[0]) != "joint":
+        print("ejec")
+    else:
+        cmds.select(selected[0], hi=True)
+        all_joints = cmds.ls(selection=True)
+        joints_number = len(all_joints)
+        print(all_joints)
+        print(joints_number)
+
+        control_scale = 3.0
+
+        control_list = []
+
+        offset_list = []
+
+        for i in range(joints_number - 1):
+            control = cmds.circle(name=all_joints[i] + "_ctr1")
+            cmds.rotate(0, 90, 0, control[0])
+            cmds.scale(control_scale, control_scale, control_scale, control[0])
+
+            cmds.makeIdentity(apply=True)
+            cmds.DeleteHistory()
+
+            offset_grp = cmds.group(name=control[0] + "_offset", empty=True)
+            cmds.parent(control[0], offset_grp)
+#---
+# 以下解释是AI的回答 准确性有待进一步验证
+
+# 用于镜像选定的关节（joint）
+cmds.mirrorJoint()
+# 用于创建反向运动学（IK）控制器   sj指定IK的其实关节  ee指定IK链的末端效应器（通常是控制器）  sol选择IK算法 常用的有ikSCsolver（适用于大多数情况）和ikRPsolver（适用于四肢，提供更自然的弯曲）
+cmds.ikHandle(name="IK_L_Arm", sj=cmds.ls("RIG_L_UpperArm")[0], ee=cmds.ls("RIG_L_Wrist")[0], sol="ikRPsolver")
+# 用于创建簇（Cluster） 它可以用来对一组定点或控制点进行分组，以便更方便地进行选择和变形操作
+cmds.cluster()
+# 用于创建点约束 点约束允许你将一个对象的位置约束到另一个对象上，是得被约束的对象跟随目标对象的移动
+cmds.pointConstraint()
+# 用于创建整数滑块组
+cmds.intSliderGrp()
+# 用于将多个多边形对象合并为一个单一多边形对象
+cmds.polyUnite()
+# 用于创建非线性变形器
+cmds.nonLinear()
+# 用于创建驱动关键帧  驱动关键帧是用于在动画中创建依赖关系的一个强大工具，允许一个属性的变化（驱动属性）自动影响另一个属性（被驱动属性）
+cmds.setDrivenKeyframe()
